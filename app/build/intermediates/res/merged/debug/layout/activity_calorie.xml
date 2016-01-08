@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent" android:padding="5dp">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <ToggleButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/toggleConnect"
+            android:checked="false"
+            android:textOff="@string/toggle_off"
+            android:textOn="@string/toggle_on"/>
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/getdataBtn"
+            android:text="Get Data"
+            android:onClick="getDataClick"/>
+
+    </LinearLayout>
+
+</LinearLayout><!-- From: file:/Users/marcoscandelaboti/Desktop/TerminalIO_V2_Android_SampleAndDocumentation_r03/TIOV2Sample/app/src/main/res/layout/activity_calorie.xml -->
