@@ -7,6 +7,11 @@ import java.util.ArrayList;
 /**
  * Created by marcoscandelaboti on 15/12/15.
  */
+
+
+// I AM NOT USING THIS CLASS RIGHT NOW, SPIROMEASUREMENT IS DOING ITS FUNCTION-----------------------------------
+
+
 public class CalorieMeasurement {
 
     double Volume, O2Expired, VO2, VCO2, VI, RER, RERCalEq, time, kCAl;

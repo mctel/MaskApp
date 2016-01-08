@@ -34,21 +34,27 @@ public class SpiroMeasurement{
         double currentTime = lastDataPoint.getTime() + SampleTime;
         double Volume = lastDataPoint.getVolume()+deltaVolume;
 
-        /*Log.i("TTflow", String.valueOf(flow));
-        Log.i("TTcurrentTime", String.valueOf(currentTime));
-        Log.i("TTVolume", String.valueOf(Volume));*/
+        //Log.i("TTflow", "       "+String.valueOf(flow));
+        //Log.i("TTcurrentTime"," "+ String.valueOf(currentTime));
+        //Log.i("TTVolume", String.valueOf(Volume));
 
         SpiroDataPointCore currentDataPoint = new SpiroDataPointCore(flow,currentTime,Volume);
 
-        if(lastDataPoint.getFlow() * flow < 0 && Math.abs(flow) < 0.1){
-                    //sign change
+        //Log.i("Flow: ", String.valueOf((lastDataPoint.getFlow() * flow)));
+        //Log.i("FlowAbs: ", String.valueOf(Math.abs(flow)));
+
+        //WHEN WE WORK WITH REAL DATA WE HAVE TO CHANGE THE SECOND THRESHOLD
+        if(lastDataPoint.getFlow() * flow < 0 && Math.abs(flow) < 10){ //sign change && flow equals to 0
+            //I think this is wrong, we want the volume at last zero, and this way we're just calculating the volume between
+            //the last two points
             volumeAtLastZero = Volume-lastDataPoint.getVolume();
-            //We just calculate the volume exhaled because with it it's enough to get the kCal
+            //We just calculate the volume exhaled because it's enough to get the kCal
             if (volumeAtLastZero>0.0){
-                listBreathing.addVolume(currentTime,volumeAtLastZero);
+                listBreathing.addVolume(currentTime, volumeAtLastZero);
                 listBreathing.addKcal(currentTime, kCalcalc(currentTime, volumeAtLastZero));
                 Log.i("kCal", listBreathing.toStringKcal());
-                Log.i("kCalTime", String.valueOf(currentTime));
+                //Log.i("kCal", String.valueOf(kCalcalc(currentTime, volumeAtLastZero)));
+                Log.i("kCalTime", listBreathing.toStringKcalTime());
             }
 
         }else if(Math.abs(flow) < 0.1){
@@ -59,6 +65,8 @@ public class SpiroMeasurement{
         dataPoints.add(currentDataPoint);
 
     }
+
+
 
     public void Append (short flow){
         double realFlow = (double)flow / 10.0;

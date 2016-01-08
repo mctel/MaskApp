@@ -187,7 +187,6 @@ public class LinkedListBreathing {
     public int sizeTimeK(){
         return listCountTimeK;
     }
-
     public int sizeTimeV(){
         return listCountTimeV;
     }

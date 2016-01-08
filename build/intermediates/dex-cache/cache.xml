@@ -9,13 +9,6 @@
         <dex dex="/Users/marcoscandelaboti/Desktop/TerminalIO_V2_Android_SampleAndDocumentation_r03/TIOV2Sample/app/build/intermediates/pre-dexed/debug/JLargeArrays-1.2-02c182c3b964f5d0640f146ec6c0415aa4f0a575.jar" />
     </item>
     <item
-        jar="/Users/marcoscandelaboti/.gradle/caches/modules-2/files-2.1/com.github.wendykierp/JTransforms/3.0/79477aec6929cd64cd863d6ac59c2445d00239a3/JTransforms-3.0.jar"
-        jumboMode="false"
-        revision="21.1.2"
-        sha1="79477aec6929cd64cd863d6ac59c2445d00239a3">
-        <dex dex="/Users/marcoscandelaboti/Desktop/TerminalIO_V2_Android_SampleAndDocumentation_r03/TIOV2Sample/app/build/intermediates/pre-dexed/debug/JTransforms-3.0-55510187c257aff336e89ffc0499a7ecc56be396.jar" />
-    </item>
-    <item
         jar="/Users/marcoscandelaboti/sdk/extras/android/m2repository/com/android/support/support-v4/19.1.0/support-v4-19.1.0.jar"
         jumboMode="false"
         revision="21.1.2"
@@ -28,6 +21,13 @@
         revision="21.1.2"
         sha1="b036abbb61656165da99cf44898e4b9123687e65">
         <dex dex="/Users/marcoscandelaboti/Desktop/TerminalIO_V2_Android_SampleAndDocumentation_r03/TIOV2Sample/app/build/intermediates/pre-dexed/debug/MPAndroidChart-v2.1.6-437ee10a6fa5c38a38f073a802f0d1c409efd382.jar" />
+    </item>
+    <item
+        jar="/Users/marcoscandelaboti/.gradle/caches/modules-2/files-2.1/com.github.wendykierp/JTransforms/3.0/79477aec6929cd64cd863d6ac59c2445d00239a3/JTransforms-3.0.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="79477aec6929cd64cd863d6ac59c2445d00239a3">
+        <dex dex="/Users/marcoscandelaboti/Desktop/TerminalIO_V2_Android_SampleAndDocumentation_r03/TIOV2Sample/app/build/intermediates/pre-dexed/debug/JTransforms-3.0-55510187c257aff336e89ffc0499a7ecc56be396.jar" />
     </item>
 
 </items>

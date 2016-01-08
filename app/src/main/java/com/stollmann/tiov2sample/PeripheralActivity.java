@@ -341,6 +341,9 @@ public class PeripheralActivity extends DemoBase implements TIOPeripheralCallbac
 				fftArray[fftCounter] = measurement1.getLastValue().getFlow();
 				fftCounter++;
 
+				Log.i("TimeKcal", measurement1.listBreathing.toStringKcalTime());
+				//Log.i("TimeKcal", measurement2.listBreathing.toStringKcalTime());
+
 				//Once we have a complet window, we calculate the FFT of the whole and get the maxValue
 				if(fftCounter == fftWindowSize - 1) {
 
@@ -474,8 +477,8 @@ public class PeripheralActivity extends DemoBase implements TIOPeripheralCallbac
 					_CO2Btn.setChecked(false);
 					chartFlag = false;
 					chartFlag2 = false;
-					mChart.getAxisLeft().setAxisMaxValue(150f);
-					mChart.getAxisLeft().setAxisMinValue(-150f);
+					mChart.getAxisLeft().setAxisMaxValue(200f);
+					mChart.getAxisLeft().setAxisMinValue(-200f);
 					mChart.invalidate();
 					mChart.setData(dataFlow);
 				}
@@ -628,8 +631,8 @@ public class PeripheralActivity extends DemoBase implements TIOPeripheralCallbac
 			mChart.getAxisLeft().setAxisMinValue(0f);
 			mChart.setData(dataVolume);
 		}else if(!chartFlag2){
-			mChart.getAxisLeft().setAxisMaxValue(150f);
-			mChart.getAxisLeft().setAxisMinValue(-150f);
+			mChart.getAxisLeft().setAxisMaxValue(200f);
+			mChart.getAxisLeft().setAxisMinValue(-200f);
 			mChart.setData(dataFlow);
 		} else{
 			mChart.getAxisLeft().setAxisMaxValue(150f);
