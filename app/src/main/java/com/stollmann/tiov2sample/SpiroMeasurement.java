@@ -10,7 +10,7 @@ public class SpiroMeasurement{
     private static double LPMfactor = 1.0 / 60.0;
     //private static double TOLERANCE = 0.0001;
 
-    private double volumeAtLastZero = 0.0;
+    private double volumeAtLastZero = 0.0, slope = 0.0;
 
     ArrayList<SpiroDataPointCore> dataPoints;
     LinkedListBreathing listBreathing;
@@ -44,21 +44,21 @@ public class SpiroMeasurement{
         //Log.i("FlowAbs: ", String.valueOf(Math.abs(flow)));
 
         //WHEN WE WORK WITH REAL DATA WE HAVE TO CHANGE THE SECOND THRESHOLD
-        if(lastDataPoint.getFlow() * flow < 0 && Math.abs(flow) < 10){ //sign change && flow equals to 0
-            //I think this is wrong, we want the volume at last zero, and this way we're just calculating the volume between
-            //the last two points
-            volumeAtLastZero = Volume-lastDataPoint.getVolume();
+        if(lastDataPoint.getFlow() * flow < 0 || Math.abs(flow) < 10){ //sign change && flow almost equals to 0
+            slope = Volume-lastDataPoint.getVolume();
             //We just calculate the volume exhaled because it's enough to get the kCal
-            if (volumeAtLastZero>0.0){
+            if (slope > 0.0){ //This will mean that the slope of the volume curve is decreasing
+                volumeAtLastZero = Volume;
+            } else {
+                Log.i("volume1", String.valueOf(volumeAtLastZero));
+                volumeAtLastZero = Volume - volumeAtLastZero;
+                Log.i("volume2", String.valueOf(volumeAtLastZero));
                 listBreathing.addVolume(currentTime, volumeAtLastZero);
                 listBreathing.addKcal(currentTime, kCalcalc(currentTime, volumeAtLastZero));
                 Log.i("kCal", listBreathing.toStringKcal());
                 //Log.i("kCal", String.valueOf(kCalcalc(currentTime, volumeAtLastZero)));
                 Log.i("kCalTime", listBreathing.toStringKcalTime());
             }
-
-        }else if(Math.abs(flow) < 0.1){
-            //
 
         }
 

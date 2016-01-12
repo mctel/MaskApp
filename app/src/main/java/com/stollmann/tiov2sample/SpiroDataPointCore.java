@@ -8,7 +8,7 @@ public class SpiroDataPointCore {
     private double flow;
     private double deltaVolume;
     private double calorie;
-
+    private double volumeAtZero;
 
     public SpiroDataPointCore(double flow, double time){
         super();
@@ -21,6 +21,19 @@ public class SpiroDataPointCore {
         this.time = timeSpiro;
         this.flow = data;
         this.volume = volume;
+    }
+
+    public SpiroDataPointCore(double volumeAtZero){
+        super();
+        this.volumeAtZero = volumeAtZero;
+    }
+
+    public double getVolumeAtZero() {
+        return volumeAtZero;
+    }
+
+    public void setVolumeAtZero(double volumeAtZero) {
+        this.volumeAtZero = volumeAtZero;
     }
 
     public double getTime() {
