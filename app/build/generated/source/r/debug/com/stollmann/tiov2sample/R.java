@@ -24,26 +24,28 @@ public final class R {
         public static final int activity_vertical_margin=0x7f050001;
     }
     public static final class drawable {
-        public static final int ic_launcher=0x7f020000;
-        public static final int marker2=0x7f020001;
-        public static final int switch_2=0x7f020002;
+        public static final int button=0x7f020000;
+        public static final int ic_launcher=0x7f020001;
+        public static final int marker2=0x7f020002;
+        public static final int switch_2=0x7f020003;
     }
     public static final class id {
-        public static final int actionSave=0x7f0a0029;
-        public static final int actionToggleAdjustXLegend=0x7f0a0027;
-        public static final int actionToggleAutoScaleMinMax=0x7f0a002b;
-        public static final int actionToggleCircles=0x7f0a0020;
-        public static final int actionToggleCubic=0x7f0a0021;
-        public static final int actionToggleFilled=0x7f0a001f;
-        public static final int actionToggleFilter=0x7f0a0028;
-        public static final int actionToggleHighlight=0x7f0a0022;
-        public static final int actionTogglePinch=0x7f0a002a;
-        public static final int actionToggleStartzero=0x7f0a0023;
-        public static final int actionToggleValues=0x7f0a001e;
-        public static final int action_settings=0x7f0a002c;
-        public static final int animateX=0x7f0a0024;
-        public static final int animateXY=0x7f0a0026;
-        public static final int animateY=0x7f0a0025;
+        public static final int actionSave=0x7f0a002b;
+        public static final int actionToggleAdjustXLegend=0x7f0a0029;
+        public static final int actionToggleAutoScaleMinMax=0x7f0a002d;
+        public static final int actionToggleCircles=0x7f0a0022;
+        public static final int actionToggleCubic=0x7f0a0023;
+        public static final int actionToggleFilled=0x7f0a0021;
+        public static final int actionToggleFilter=0x7f0a002a;
+        public static final int actionToggleHighlight=0x7f0a0024;
+        public static final int actionTogglePinch=0x7f0a002c;
+        public static final int actionToggleStartzero=0x7f0a0025;
+        public static final int actionToggleValues=0x7f0a0020;
+        public static final int action_settings=0x7f0a002e;
+        public static final int animateX=0x7f0a0026;
+        public static final int animateXY=0x7f0a0028;
+        public static final int animateY=0x7f0a0027;
+        public static final int app_title=0x7f0a001e;
         public static final int chart1=0x7f0a0000;
         public static final int chartSwithc=0x7f0a0019;
         public static final int clearAllButton=0x7f0a0008;
@@ -58,6 +60,7 @@ public final class R {
         public static final int radioButtons=0x7f0a000c;
         public static final int radioCalorie=0x7f0a000e;
         public static final int radioChart=0x7f0a000d;
+        public static final int reg_btn=0x7f0a001f;
         public static final int removeButton=0x7f0a001d;
         public static final int scanButton=0x7f0a0007;
         public static final int scanIndicator=0x7f0a0009;
@@ -84,6 +87,7 @@ public final class R {
         public static final int activity_peripheral_land=0x7f030005;
         public static final int custom_marker_view=0x7f030006;
         public static final int peripheral_cell=0x7f030007;
+        public static final int register_activity=0x7f030008;
     }
     public static final class menu {
         public static final int line=0x7f090000;
@@ -94,33 +98,35 @@ public final class R {
         public static final int CO2=0x7f080000;
         public static final int action_settings=0x7f080001;
         public static final int app_name=0x7f080002;
-        public static final int calories_btn=0x7f080003;
-        public static final int charts_btn=0x7f080004;
-        public static final int clear_all_button_title=0x7f080005;
-        public static final int clear_button_title=0x7f080006;
-        public static final int connect_button_title=0x7f080007;
-        public static final int credits_label=0x7f080008;
-        public static final int credits_placeholder=0x7f080009;
-        public static final int data_to_send_placeholder=0x7f08000a;
-        public static final int db_label=0x7f08000b;
-        public static final int db_placeholder=0x7f08000c;
-        public static final int disconnect_button_title=0x7f08000d;
-        public static final int flow=0x7f08000e;
-        public static final int main_title_placeholder=0x7f08000f;
-        public static final int radiobtn_title=0x7f080010;
-        public static final int receiving_label=0x7f080011;
-        public static final int remove_button_title=0x7f080012;
-        public static final int scan_button_title=0x7f080013;
-        public static final int send_button_title=0x7f080014;
-        public static final int sending_label=0x7f080015;
-        public static final int sub_title_placeholder=0x7f080016;
-        public static final int title_activity_peripheral=0x7f080017;
-        public static final int toggleC=0x7f080018;
-        public static final int toggleF=0x7f080019;
-        public static final int toggleV=0x7f08001a;
-        public static final int toggle_off=0x7f08001b;
-        public static final int toggle_on=0x7f08001c;
-        public static final int volume=0x7f08001d;
+        public static final int app_title=0x7f080003;
+        public static final int calories_btn=0x7f080004;
+        public static final int charts_btn=0x7f080005;
+        public static final int clear_all_button_title=0x7f080006;
+        public static final int clear_button_title=0x7f080007;
+        public static final int connect_button_title=0x7f080008;
+        public static final int credits_label=0x7f080009;
+        public static final int credits_placeholder=0x7f08000a;
+        public static final int data_to_send_placeholder=0x7f08000b;
+        public static final int db_label=0x7f08000c;
+        public static final int db_placeholder=0x7f08000d;
+        public static final int disconnect_button_title=0x7f08000e;
+        public static final int flow=0x7f08000f;
+        public static final int main_title_placeholder=0x7f080010;
+        public static final int radiobtn_title=0x7f080011;
+        public static final int receiving_label=0x7f080012;
+        public static final int register=0x7f080013;
+        public static final int remove_button_title=0x7f080014;
+        public static final int scan_button_title=0x7f080015;
+        public static final int send_button_title=0x7f080016;
+        public static final int sending_label=0x7f080017;
+        public static final int sub_title_placeholder=0x7f080018;
+        public static final int title_activity_peripheral=0x7f080019;
+        public static final int toggleC=0x7f08001a;
+        public static final int toggleF=0x7f08001b;
+        public static final int toggleV=0x7f08001c;
+        public static final int toggle_off=0x7f08001d;
+        public static final int toggle_on=0x7f08001e;
+        public static final int volume=0x7f08001f;
     }
     public static final class style {
         /**  API 11 theme customizations can go here. 

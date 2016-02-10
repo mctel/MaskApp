@@ -43,7 +43,7 @@ public class SpiroMeasurement{
         //Log.i("Flow: ", String.valueOf((lastDataPoint.getFlow() * flow)));
         //Log.i("FlowAbs: ", String.valueOf(Math.abs(flow)));
 
-        //WHEN WE WORK WITH REAL DATA WE HAVE TO CHANGE THE SECOND THRESHOLD
+        /*//WHEN WE WORK WITH REAL DATA WE HAVE TO CHANGE THE SECOND THRESHOLD
         if(lastDataPoint.getFlow() * flow < 0 || Math.abs(flow) < 10){ //sign change && flow almost equals to 0
             slope = Volume-lastDataPoint.getVolume();
             //We just calculate the volume exhaled because it's enough to get the kCal
@@ -60,17 +60,17 @@ public class SpiroMeasurement{
                 Log.i("kCalTime", listBreathing.toStringKcalTime());
             }
 
-        }
+        }*/
 
         dataPoints.add(currentDataPoint);
-
+        Log.i("TTVolume", String.valueOf(Volume));
     }
 
 
 
     public void Append (short flow){
-        double realFlow = (double)flow / 10.0;
-        Append(realFlow);
+        double realFlow = (double)flow * 60.0 / 10.0; //60 is to make it Liters/sec instead of l/min, and the 10 is bcs
+        Append(realFlow);                             // we multiplied before sending the data by 10 to make every value integer
     }
 
     public SpiroDataPointCore getLastValue(){

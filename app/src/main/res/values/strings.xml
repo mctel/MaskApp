@@ -29,7 +29,10 @@
     <string name="flow">Flow</string>
     <string name="CO2">CO2</string>
     <string name="volume">Volume</string>
-    
+
+    <string name="register">Register</string>
+    <string name="app_title">maskapp</string>
+
     <string name="db_label">dB</string>
     <string name="db_placeholder">-75</string>
     <string name="sending_label">Sending</string>

@@ -1,6 +1,6 @@
 -- Merging decision tree log ---
 manifest
-ADDED from /Users/marcoscandelaboti/Desktop/TerminalIO_V2_Android_SampleAndDocumentation_r03/TIOV2Sample/app/src/main/AndroidManifest.xml:2:1-64:12
+ADDED from /Users/marcoscandelaboti/Desktop/TerminalIO_V2_Android_SampleAndDocumentation_r03/TIOV2Sample/app/src/main/AndroidManifest.xml:2:1-71:12
 	package
 		ADDED from /Users/marcoscandelaboti/Desktop/TerminalIO_V2_Android_SampleAndDocumentation_r03/TIOV2Sample/app/src/main/AndroidManifest.xml:3:5-40
 		INJECTED from /Users/marcoscandelaboti/Desktop/TerminalIO_V2_Android_SampleAndDocumentation_r03/TIOV2Sample/app/src/main/AndroidManifest.xml
@@ -38,7 +38,7 @@ ADDED from /Users/marcoscandelaboti/Desktop/TerminalIO_V2_Android_SampleAndDocum
 	android:name
 		ADDED from /Users/marcoscandelaboti/Desktop/TerminalIO_V2_Android_SampleAndDocumentation_r03/TIOV2Sample/app/src/main/AndroidManifest.xml:15:9-53
 application
-ADDED from /Users/marcoscandelaboti/Desktop/TerminalIO_V2_Android_SampleAndDocumentation_r03/TIOV2Sample/app/src/main/AndroidManifest.xml:18:5-62:19
+ADDED from /Users/marcoscandelaboti/Desktop/TerminalIO_V2_Android_SampleAndDocumentation_r03/TIOV2Sample/app/src/main/AndroidManifest.xml:18:5-69:19
 	android:label
 		ADDED from /Users/marcoscandelaboti/Desktop/TerminalIO_V2_Android_SampleAndDocumentation_r03/TIOV2Sample/app/src/main/AndroidManifest.xml:22:9-41
 	android:allowBackup
@@ -50,56 +50,60 @@ ADDED from /Users/marcoscandelaboti/Desktop/TerminalIO_V2_Android_SampleAndDocum
 	android:name
 		ADDED from /Users/marcoscandelaboti/Desktop/TerminalIO_V2_Android_SampleAndDocumentation_r03/TIOV2Sample/app/src/main/AndroidManifest.xml:19:9-61
 activity#com.stollmann.tiov2sample.ManagerActivity
-ADDED from /Users/marcoscandelaboti/Desktop/TerminalIO_V2_Android_SampleAndDocumentation_r03/TIOV2Sample/app/src/main/AndroidManifest.xml:24:9-32:20
+ADDED from /Users/marcoscandelaboti/Desktop/TerminalIO_V2_Android_SampleAndDocumentation_r03/TIOV2Sample/app/src/main/AndroidManifest.xml:24:9-31:20
 	android:label
 		ADDED from /Users/marcoscandelaboti/Desktop/TerminalIO_V2_Android_SampleAndDocumentation_r03/TIOV2Sample/app/src/main/AndroidManifest.xml:26:13-45
 	android:name
 		ADDED from /Users/marcoscandelaboti/Desktop/TerminalIO_V2_Android_SampleAndDocumentation_r03/TIOV2Sample/app/src/main/AndroidManifest.xml:25:13-69
-intent-filter#android.intent.action.MAIN+android.intent.category.LAUNCHER
-ADDED from /Users/marcoscandelaboti/Desktop/TerminalIO_V2_Android_SampleAndDocumentation_r03/TIOV2Sample/app/src/main/AndroidManifest.xml:27:13-31:29
-action#android.intent.action.MAIN
-ADDED from /Users/marcoscandelaboti/Desktop/TerminalIO_V2_Android_SampleAndDocumentation_r03/TIOV2Sample/app/src/main/AndroidManifest.xml:28:17-69
-	android:name
-		ADDED from /Users/marcoscandelaboti/Desktop/TerminalIO_V2_Android_SampleAndDocumentation_r03/TIOV2Sample/app/src/main/AndroidManifest.xml:28:25-66
-category#android.intent.category.LAUNCHER
-ADDED from /Users/marcoscandelaboti/Desktop/TerminalIO_V2_Android_SampleAndDocumentation_r03/TIOV2Sample/app/src/main/AndroidManifest.xml:30:17-77
-	android:name
-		ADDED from /Users/marcoscandelaboti/Desktop/TerminalIO_V2_Android_SampleAndDocumentation_r03/TIOV2Sample/app/src/main/AndroidManifest.xml:30:27-74
 activity#com.stollmann.tiov2sample.LineChartActivity1
-ADDED from /Users/marcoscandelaboti/Desktop/TerminalIO_V2_Android_SampleAndDocumentation_r03/TIOV2Sample/app/src/main/AndroidManifest.xml:33:9-55
+ADDED from /Users/marcoscandelaboti/Desktop/TerminalIO_V2_Android_SampleAndDocumentation_r03/TIOV2Sample/app/src/main/AndroidManifest.xml:32:9-55
 	android:name
-		ADDED from /Users/marcoscandelaboti/Desktop/TerminalIO_V2_Android_SampleAndDocumentation_r03/TIOV2Sample/app/src/main/AndroidManifest.xml:33:19-53
+		ADDED from /Users/marcoscandelaboti/Desktop/TerminalIO_V2_Android_SampleAndDocumentation_r03/TIOV2Sample/app/src/main/AndroidManifest.xml:32:19-53
 activity#com.stollmann.tiov2sample.PeripheralActivity
-ADDED from /Users/marcoscandelaboti/Desktop/TerminalIO_V2_Android_SampleAndDocumentation_r03/TIOV2Sample/app/src/main/AndroidManifest.xml:34:9-42:20
+ADDED from /Users/marcoscandelaboti/Desktop/TerminalIO_V2_Android_SampleAndDocumentation_r03/TIOV2Sample/app/src/main/AndroidManifest.xml:33:9-41:20
 	android:label
-		ADDED from /Users/marcoscandelaboti/Desktop/TerminalIO_V2_Android_SampleAndDocumentation_r03/TIOV2Sample/app/src/main/AndroidManifest.xml:36:13-62
+		ADDED from /Users/marcoscandelaboti/Desktop/TerminalIO_V2_Android_SampleAndDocumentation_r03/TIOV2Sample/app/src/main/AndroidManifest.xml:35:13-62
 	android:parentActivityName
-		ADDED from /Users/marcoscandelaboti/Desktop/TerminalIO_V2_Android_SampleAndDocumentation_r03/TIOV2Sample/app/src/main/AndroidManifest.xml:38:13-57
+		ADDED from /Users/marcoscandelaboti/Desktop/TerminalIO_V2_Android_SampleAndDocumentation_r03/TIOV2Sample/app/src/main/AndroidManifest.xml:37:13-57
 	android:configChanges
-		ADDED from /Users/marcoscandelaboti/Desktop/TerminalIO_V2_Android_SampleAndDocumentation_r03/TIOV2Sample/app/src/main/AndroidManifest.xml:37:13-59
+		ADDED from /Users/marcoscandelaboti/Desktop/TerminalIO_V2_Android_SampleAndDocumentation_r03/TIOV2Sample/app/src/main/AndroidManifest.xml:36:13-59
 	android:name
-		ADDED from /Users/marcoscandelaboti/Desktop/TerminalIO_V2_Android_SampleAndDocumentation_r03/TIOV2Sample/app/src/main/AndroidManifest.xml:35:13-72
+		ADDED from /Users/marcoscandelaboti/Desktop/TerminalIO_V2_Android_SampleAndDocumentation_r03/TIOV2Sample/app/src/main/AndroidManifest.xml:34:13-72
 meta-data#android.support.PARENT_ACTIVITY
-ADDED from /Users/marcoscandelaboti/Desktop/TerminalIO_V2_Android_SampleAndDocumentation_r03/TIOV2Sample/app/src/main/AndroidManifest.xml:39:13-41:51
+ADDED from /Users/marcoscandelaboti/Desktop/TerminalIO_V2_Android_SampleAndDocumentation_r03/TIOV2Sample/app/src/main/AndroidManifest.xml:38:13-40:51
 	android:value
-		ADDED from /Users/marcoscandelaboti/Desktop/TerminalIO_V2_Android_SampleAndDocumentation_r03/TIOV2Sample/app/src/main/AndroidManifest.xml:41:17-48
+		ADDED from /Users/marcoscandelaboti/Desktop/TerminalIO_V2_Android_SampleAndDocumentation_r03/TIOV2Sample/app/src/main/AndroidManifest.xml:40:17-48
 	android:name
-		ADDED from /Users/marcoscandelaboti/Desktop/TerminalIO_V2_Android_SampleAndDocumentation_r03/TIOV2Sample/app/src/main/AndroidManifest.xml:40:17-63
+		ADDED from /Users/marcoscandelaboti/Desktop/TerminalIO_V2_Android_SampleAndDocumentation_r03/TIOV2Sample/app/src/main/AndroidManifest.xml:39:17-63
+activity#com.stollmann.tiov2sample.RegisterActivity
+ADDED from /Users/marcoscandelaboti/Desktop/TerminalIO_V2_Android_SampleAndDocumentation_r03/TIOV2Sample/app/src/main/AndroidManifest.xml:43:9-49:20
+	android:name
+		ADDED from /Users/marcoscandelaboti/Desktop/TerminalIO_V2_Android_SampleAndDocumentation_r03/TIOV2Sample/app/src/main/AndroidManifest.xml:43:19-51
+intent-filter#android.intent.action.MAIN+android.intent.category.LAUNCHER
+ADDED from /Users/marcoscandelaboti/Desktop/TerminalIO_V2_Android_SampleAndDocumentation_r03/TIOV2Sample/app/src/main/AndroidManifest.xml:44:13-48:29
+action#android.intent.action.MAIN
+ADDED from /Users/marcoscandelaboti/Desktop/TerminalIO_V2_Android_SampleAndDocumentation_r03/TIOV2Sample/app/src/main/AndroidManifest.xml:45:17-69
+	android:name
+		ADDED from /Users/marcoscandelaboti/Desktop/TerminalIO_V2_Android_SampleAndDocumentation_r03/TIOV2Sample/app/src/main/AndroidManifest.xml:45:25-66
+category#android.intent.category.LAUNCHER
+ADDED from /Users/marcoscandelaboti/Desktop/TerminalIO_V2_Android_SampleAndDocumentation_r03/TIOV2Sample/app/src/main/AndroidManifest.xml:47:17-77
+	android:name
+		ADDED from /Users/marcoscandelaboti/Desktop/TerminalIO_V2_Android_SampleAndDocumentation_r03/TIOV2Sample/app/src/main/AndroidManifest.xml:47:27-74
 activity#com.stollmann.tiov2sample.CalorieActivity
-ADDED from /Users/marcoscandelaboti/Desktop/TerminalIO_V2_Android_SampleAndDocumentation_r03/TIOV2Sample/app/src/main/AndroidManifest.xml:44:9-52:20
+ADDED from /Users/marcoscandelaboti/Desktop/TerminalIO_V2_Android_SampleAndDocumentation_r03/TIOV2Sample/app/src/main/AndroidManifest.xml:51:9-59:20
 	android:label
-		ADDED from /Users/marcoscandelaboti/Desktop/TerminalIO_V2_Android_SampleAndDocumentation_r03/TIOV2Sample/app/src/main/AndroidManifest.xml:46:13-62
+		ADDED from /Users/marcoscandelaboti/Desktop/TerminalIO_V2_Android_SampleAndDocumentation_r03/TIOV2Sample/app/src/main/AndroidManifest.xml:53:13-62
 	android:parentActivityName
-		ADDED from /Users/marcoscandelaboti/Desktop/TerminalIO_V2_Android_SampleAndDocumentation_r03/TIOV2Sample/app/src/main/AndroidManifest.xml:48:13-57
+		ADDED from /Users/marcoscandelaboti/Desktop/TerminalIO_V2_Android_SampleAndDocumentation_r03/TIOV2Sample/app/src/main/AndroidManifest.xml:55:13-57
 	android:configChanges
-		ADDED from /Users/marcoscandelaboti/Desktop/TerminalIO_V2_Android_SampleAndDocumentation_r03/TIOV2Sample/app/src/main/AndroidManifest.xml:47:13-59
+		ADDED from /Users/marcoscandelaboti/Desktop/TerminalIO_V2_Android_SampleAndDocumentation_r03/TIOV2Sample/app/src/main/AndroidManifest.xml:54:13-59
 	android:name
-		ADDED from /Users/marcoscandelaboti/Desktop/TerminalIO_V2_Android_SampleAndDocumentation_r03/TIOV2Sample/app/src/main/AndroidManifest.xml:45:13-69
+		ADDED from /Users/marcoscandelaboti/Desktop/TerminalIO_V2_Android_SampleAndDocumentation_r03/TIOV2Sample/app/src/main/AndroidManifest.xml:52:13-69
 activity#com.stollmann.tiov2sample.FFTChart
-ADDED from /Users/marcoscandelaboti/Desktop/TerminalIO_V2_Android_SampleAndDocumentation_r03/TIOV2Sample/app/src/main/AndroidManifest.xml:54:9-61:20
+ADDED from /Users/marcoscandelaboti/Desktop/TerminalIO_V2_Android_SampleAndDocumentation_r03/TIOV2Sample/app/src/main/AndroidManifest.xml:61:9-68:20
 	android:parentActivityName
-		ADDED from /Users/marcoscandelaboti/Desktop/TerminalIO_V2_Android_SampleAndDocumentation_r03/TIOV2Sample/app/src/main/AndroidManifest.xml:57:13-58
+		ADDED from /Users/marcoscandelaboti/Desktop/TerminalIO_V2_Android_SampleAndDocumentation_r03/TIOV2Sample/app/src/main/AndroidManifest.xml:64:13-58
 	android:configChanges
-		ADDED from /Users/marcoscandelaboti/Desktop/TerminalIO_V2_Android_SampleAndDocumentation_r03/TIOV2Sample/app/src/main/AndroidManifest.xml:56:13-59
+		ADDED from /Users/marcoscandelaboti/Desktop/TerminalIO_V2_Android_SampleAndDocumentation_r03/TIOV2Sample/app/src/main/AndroidManifest.xml:63:13-59
 	android:name
-		ADDED from /Users/marcoscandelaboti/Desktop/TerminalIO_V2_Android_SampleAndDocumentation_r03/TIOV2Sample/app/src/main/AndroidManifest.xml:55:13-62
+		ADDED from /Users/marcoscandelaboti/Desktop/TerminalIO_V2_Android_SampleAndDocumentation_r03/TIOV2Sample/app/src/main/AndroidManifest.xml:62:13-62

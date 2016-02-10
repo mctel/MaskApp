@@ -459,7 +459,7 @@ public class PeripheralActivity extends DemoBase implements TIOPeripheralCallbac
 					_CO2Btn.setChecked(false);
 					chartFlag=true;
 					chartFlag2=true;
-					mChart.getAxisLeft().setAxisMaxValue(2f);
+					mChart.getAxisLeft().setAxisMaxValue(10f);
 					mChart.getAxisLeft().setAxisMinValue(0f);
 					mChart.invalidate();
 					mChart.setData(dataVolume);
@@ -477,8 +477,8 @@ public class PeripheralActivity extends DemoBase implements TIOPeripheralCallbac
 					_CO2Btn.setChecked(false);
 					chartFlag = false;
 					chartFlag2 = false;
-					mChart.getAxisLeft().setAxisMaxValue(200f);
-					mChart.getAxisLeft().setAxisMinValue(-200f);
+					mChart.getAxisLeft().setAxisMaxValue(1500f);
+					mChart.getAxisLeft().setAxisMinValue(-1500f);
 					mChart.invalidate();
 					mChart.setData(dataFlow);
 				}
@@ -627,12 +627,12 @@ public class PeripheralActivity extends DemoBase implements TIOPeripheralCallbac
 
 		// set data
 		if (chartFlag){
-			mChart.getAxisLeft().setAxisMaxValue(2f);
+			mChart.getAxisLeft().setAxisMaxValue(10f);
 			mChart.getAxisLeft().setAxisMinValue(0f);
 			mChart.setData(dataVolume);
 		}else if(!chartFlag2){
-			mChart.getAxisLeft().setAxisMaxValue(200f);
-			mChart.getAxisLeft().setAxisMinValue(-200f);
+			mChart.getAxisLeft().setAxisMaxValue(1500f);
+			mChart.getAxisLeft().setAxisMinValue(-1500f);
 			mChart.setData(dataFlow);
 		} else{
 			mChart.getAxisLeft().setAxisMaxValue(150f);
@@ -643,8 +643,8 @@ public class PeripheralActivity extends DemoBase implements TIOPeripheralCallbac
 		/*Let the view just show the first 60 values, then you have to scroll if you want to watch more
 		We cannot do it at the beginning because every time the chart receive new values will move the view
 		to show them, so we have to correct it here*/
-		mChart.setVisibleXRangeMaximum(60);
-		mChart.moveViewToX(xVals.size() -61);
+		mChart.setVisibleXRangeMaximum(1000);
+		mChart.moveViewToX(xVals.size() -1100);
 
 		_timeTextView.setText("Time: " + String.format("%1$,.2f", time) + " s");
 	}

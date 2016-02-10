@@ -17,6 +17,7 @@
     <string name="CO2">CO2</string>
     <string name="action_settings">Settings</string>
     <string name="app_name">Stollmann</string>
+    <string name="app_title">maskapp</string>
     <string name="calories_btn">Calorie Consumption</string>
     <string name="charts_btn">Volume, flow and CO2</string>
     <string name="clear_all_button_title">Clear</string>
@@ -32,6 +33,7 @@
     <string name="main_title_placeholder">BM+SR 0123  00:80:25:11:22:33</string>
     <string name="radiobtn_title">What do you want to check? </string>
     <string name="receiving_label">Receiving</string>
+    <string name="register">Register</string>
     <string name="remove_button_title">Remove</string>
     <string name="scan_button_title">Scan</string>
     <string name="send_button_title">Send</string>
