@@ -32,6 +32,7 @@ public class RegisterActivity extends Activity {
     public void onClickRegister (View v){
         Intent i = new Intent(this, ManagerActivity.class );
         startActivity(i);
-        overridePendingTransition(R.anim.left_in, R.anim.left_out);    }
+        overridePendingTransition(R.anim.left_in, R.anim.left_out);
+    }
 
 }

@@ -124,6 +124,7 @@ public class ManagerActivity extends Activity implements TIOManagerCallback {
 		intent = new Intent(ManagerActivity.this, PeripheralActivity.class);
 		intent.putExtra(TIOV2Sample.PERIPHERAL_ID_NAME, peripheral.getAddress());
 		ManagerActivity.this.startActivity(intent);
+		overridePendingTransition(R.anim.zoom_forward_in, R.anim.zoom_forward);
 
 		/*switch (opt){
 			case 0:

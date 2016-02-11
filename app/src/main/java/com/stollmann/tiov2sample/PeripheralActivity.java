@@ -88,8 +88,8 @@ public class PeripheralActivity extends DemoBase implements TIOPeripheralCallbac
 	ArrayList<Entry> yVals = new ArrayList<Entry>();
 	ArrayList<Entry> yVals2 = new ArrayList<Entry>();
 	ArrayList<Entry> yVals3 = new ArrayList<Entry>();
-	LineData dataVolume;
-	LineData dataFlow;
+	LineData dataVolume, dataVolumeSet;
+	LineData dataFlow, dataFlowSet;
 	LineData dataCO2;
 	int contY1=0, contY2=0, contY3=0;
 	double time=0.0;
@@ -163,11 +163,17 @@ public class PeripheralActivity extends DemoBase implements TIOPeripheralCallbac
 		leftAxis.removeAllLimitLines(); // reset all limit lines to avoid overlapping lines
 		leftAxis.setStartAtZero(false);
 
+		YAxis rightAxis = mChart.getAxisRight();
+		rightAxis.setValueFormatter(valueFormatterY);
+		rightAxis.removeAllLimitLines(); // reset all limit lines to avoid overlapping lines
+		rightAxis.setStartAtZero(false);
+
 		Legend legend = mChart.getLegend();
 		legend.setEnabled(false);
 
 		// limit lines are drawn behind data (and not on top)
 		leftAxis.setDrawLimitLinesBehindData(true);
+		rightAxis.setDrawLimitLinesBehindData(true);
 
 		//MyXAxisValueFormatter valueformatterX = new MyXAxisValueFormatter();
 		XAxis xAxis = mChart.getXAxis();
@@ -175,7 +181,7 @@ public class PeripheralActivity extends DemoBase implements TIOPeripheralCallbac
 		xAxis.setPosition(XAxis.XAxisPosition.BOTTOM);
 		xAxis.setSpaceBetweenLabels(2);
 
-		mChart.getAxisRight().setEnabled(false);
+		mChart.getAxisRight().setEnabled(true);
 
 		//mChart.animateX(2500, Easing.EasingOption.EaseInOutQuart);
 
@@ -467,14 +473,14 @@ public class PeripheralActivity extends DemoBase implements TIOPeripheralCallbac
 			@Override
 			public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
 				if(isChecked){
+					if (chartFlag2) mChart.getAxisRight().setEnabled(true);
+					else mChart.getAxisRight().setEnabled(false);
 					_flowBtn.setChecked(false);
-					_CO2Btn.setChecked(false);
 					chartFlag=true;
-					chartFlag2=true;
 					mChart.getAxisLeft().setAxisMaxValue(10f);
 					mChart.getAxisLeft().setAxisMinValue(0f);
 					mChart.invalidate();
-					mChart.setData(dataVolume);
+					mChart.setData(dataVolumeSet);
 				}
 				time = measurement1.getLastValue().getTime();
 				_timeTextView.setText("Time: " + String.format("%1$,.2f", time) + " s");
@@ -485,14 +491,14 @@ public class PeripheralActivity extends DemoBase implements TIOPeripheralCallbac
 			@Override
 			public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
 				if(isChecked){
+					if (chartFlag2) mChart.getAxisRight().setEnabled(true);
+					else mChart.getAxisRight().setEnabled(false);
 					_volumeBtn.setChecked(false);
-					_CO2Btn.setChecked(false);
 					chartFlag = false;
-					chartFlag2 = false;
 					mChart.getAxisLeft().setAxisMaxValue(1500f);
 					mChart.getAxisLeft().setAxisMinValue(-1500f);
 					mChart.invalidate();
-					mChart.setData(dataFlow);
+					mChart.setData(dataFlowSet);
 				}
 				time = measurement1.getLastValue().getTime();
 				_timeTextView.setText("Time: " + String.format("%1$,.2f", time) + " s");
@@ -503,15 +509,12 @@ public class PeripheralActivity extends DemoBase implements TIOPeripheralCallbac
 			@Override
 			public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
 				if(isChecked){
-					_flowBtn.setChecked(false);
-					_volumeBtn.setChecked(false);
-					chartFlag = false;
 					chartFlag2=true;
-					mChart.getAxisLeft().setAxisMaxValue(150f);
-					mChart.getAxisLeft().setAxisMinValue(-150f);
-					mChart.invalidate();
-					mChart.setData(dataCO2);
-				}
+					//mChart.getAxisLeft().setAxisMaxValue(150f);
+					//mChart.getAxisLeft().setAxisMinValue(-150f);
+					//mChart.invalidate();
+					//mChart.setData(dataCO2);
+				} else chartFlag2 = false;
 				time = measurement1.getLastValue().getTime();
 				_timeTextView.setText("Time: " + String.format("%1$,.2f", time) + " s");
 			}
@@ -639,18 +642,19 @@ public class PeripheralActivity extends DemoBase implements TIOPeripheralCallbac
 
 		// set data
 		if (chartFlag){
+			if (chartFlag2) mChart.getAxisRight().setEnabled(true);
+			else mChart.getAxisRight().setEnabled(false);
 			mChart.getAxisLeft().setAxisMaxValue(10f);
 			mChart.getAxisLeft().setAxisMinValue(0f);
-			mChart.setData(dataVolume);
-		}else if(!chartFlag2){
+			mChart.setData(dataVolumeSet);
+		}else if(!chartFlag){
+			if (chartFlag2) mChart.getAxisRight().setEnabled(true);
+			else mChart.getAxisRight().setEnabled(false);
 			mChart.getAxisLeft().setAxisMaxValue(1500f);
 			mChart.getAxisLeft().setAxisMinValue(-1500f);
-			mChart.setData(dataFlow);
-		} else{
-			mChart.getAxisLeft().setAxisMaxValue(150f);
-			mChart.getAxisLeft().setAxisMinValue(-150f);
-			mChart.setData(dataCO2);
+			mChart.setData(dataFlowSet);
 		}
+
 
 		/*Let the view just show the first 60 values, then you have to scroll if you want to watch more
 		We cannot do it at the beginning because every time the chart receive new values will move the view
@@ -686,14 +690,21 @@ public class PeripheralActivity extends DemoBase implements TIOPeripheralCallbac
 		set3.setColor(Color.BLUE);
 		set3.setValueTextSize(0f);
 
-		ArrayList<LineDataSet> dataSets =  new ArrayList<LineDataSet>();
-		dataSets.add(set1);
-		dataSets.add(set2);
-		dataSets.add(set3);
+		ArrayList<LineDataSet> dataSet1 =  new ArrayList<LineDataSet>();
+		dataSet1.add(set1);
+		dataSet1.add(set3);
 
-		dataVolume = new LineData(xVals, dataSets.set(0,set1));
-		dataFlow = new LineData(xVals, dataSets.set(1,set2));
-		dataCO2 = new LineData(xVals, dataSets.set(2,set3));
+		ArrayList<LineDataSet> dataSet2 =  new ArrayList<LineDataSet>();
+		dataSet2.add(set2);
+		dataSet2.add(set3);
+
+		dataVolumeSet = new LineData(xVals, dataSet1);
+		dataFlowSet = new LineData(xVals, dataSet2);
+		dataCO2 = new LineData(xVals, dataSet1);
+		//dataVolume = new LineData(xVals, dataSet1.set(0,set1));
+		//dataFlow = new LineData(xVals, dataSet1.set(1,set2));
+		//dataCO2 = new LineData(xVals, dataSet1.set(2,set3));
+
 	}
 
 	@Override
