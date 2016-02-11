@@ -7,35 +7,21 @@
     tools:context=".ManagerActivity" 
     >
 
-    <Button
-        android:id="@+id/scanButton"
-        android:layout_width="104dp"
+    <TextView
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginLeft="30dp"
-        android:layout_marginTop="20dp"
-        android:text="@string/scan_button_title"
-        android:onClick="onScanButtonPressed"
-        />
-
-    <Button
-        android:id="@+id/clearAllButton"
-        android:layout_width="104dp"
-        android:layout_height="wrap_content"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginRight="30dp"
-        android:layout_marginTop="20dp"
-        android:text="@string/clear_all_button_title"
-        android:onClick="onClearAllButtonPressed"
-        />
+        android:id="@+id/loading"
+        android:visibility="invisible"
+        android:text="@string/loading"
+        android:layout_alignBottom="@+id/scanIndicator"
+        android:textSize="16sp"
+        android:paddingStart="10dp"
+        android:paddingEnd="20dp"/>
 
     <ProgressBar
         android:id="@+id/scanIndicator"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/scanButton"
         android:layout_centerHorizontal="true"
         android:visibility="invisible" />
     
@@ -46,7 +32,7 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentRight="true"
         android:layout_marginTop="16dp"
-        android:layout_below="@+id/scanButton"
+        android:layout_below="@+id/scanIndicator"
         android:layout_above="@+id/txtChoose"
 		android:dividerHeight="4.0dp"
 		android:background="#FFFFFF"

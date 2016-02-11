@@ -21,6 +21,16 @@
         android:text="@string/register"
         android:id="@+id/reg_btn"
         android:textSize="25sp"
-        android:background="@drawable/button"/>
+        android:onClick="onClickRegister"
+        android:background="@drawable/button_two"/>
+
+
+    <CheckBox
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:gravity="bottom"
+        android:paddingBottom="6dp"
+        android:text="Skip registration"
+        android:checked="true"/>
 
 </LinearLayout>

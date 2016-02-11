@@ -1,6 +1,7 @@
 package com.stollmann.tiov2sample;
 
 
+import android.app.ProgressDialog;
 import android.content.res.Configuration;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -77,6 +78,8 @@ public class PeripheralActivity extends DemoBase implements TIOPeripheralCallbac
 	private long endTime = 0L;
 	int cont=0;
 
+	private ProgressDialog progressDialog;
+
 	//___________________CHART______________
 	private LineChart mChart;
 	public static byte [] data2;
@@ -131,6 +134,7 @@ public class PeripheralActivity extends DemoBase implements TIOPeripheralCallbac
 		this.connectPeripheral();
 		this.updateUIState();
 		this.displayVersionNumber();
+		this.onConnectButtonPressed();
 
 		//_____________________CHART__________________________________________
 
@@ -254,8 +258,9 @@ public class PeripheralActivity extends DemoBase implements TIOPeripheralCallbac
 		this.updateUIState();
 
 		while (this._peripheral.isConnecting()){
-			//_connectionButton.setText(R.string.connecting);
+			//progressDialog = ProgressDialog.show(this, "Loading", "Connecting to device...",true);
 		}
+		//progressDialog.dismiss();
 		_connectionButton.setTextOff(getString(R.string.toggle_off));
 
 	}
@@ -296,6 +301,10 @@ public class PeripheralActivity extends DemoBase implements TIOPeripheralCallbac
 		if (errorMessage.length() > 0) {
 			STUtil.showErrorAlert("Failed to connect with error message: " + errorMessage, this);
 		}
+		Intent intent;
+		intent = new Intent(PeripheralActivity.this, ManagerActivity.class);
+		startActivity(intent);
+
 	}
 
 	@Override
@@ -308,6 +317,9 @@ public class PeripheralActivity extends DemoBase implements TIOPeripheralCallbac
 		if (errorMessage.length() > 0) {
 			STUtil.showErrorAlert("Disconnected with error message: " + errorMessage, this);
 		}
+		Intent intent;
+		intent = new Intent(PeripheralActivity.this, ManagerActivity.class);
+		startActivity(intent);
 	}
 
 	public static SpiroMeasurement measurement1 = new SpiroMeasurement();

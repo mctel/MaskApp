@@ -26,13 +26,17 @@ import android.widget.ProgressBar;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 
+import org.w3c.dom.Text;
+
 public class ManagerActivity extends Activity implements TIOManagerCallback {
 
 	private static final int ENABLE_BT_REQUEST_ID = 1;
 	private static final int SCAN_INTERVAL = 8000;
 
+
 	private Button _scanButton;
 	private Button _clearAllButton;
+	private TextView _loading;
 	private ProgressBar _scanIndicator;
 	private ListView _peripheralsListView;
 	private ArrayAdapter<TIOPeripheral> _peripheralsAdapter;
@@ -69,10 +73,14 @@ public class ManagerActivity extends Activity implements TIOManagerCallback {
 		this.updatePeripheralsListView();
 
 		// initialize clearAllButton
-		this.updateClearAllButton();
-		
+		//this.updateClearAllButton();
+
         // display version number
 		this.displayVersionNumber();
+
+		STTrace.method("onScanButtonPressed");
+
+		this.startTimedScan();
 	}
 
 	@Override
@@ -88,7 +96,7 @@ public class ManagerActivity extends Activity implements TIOManagerCallback {
 	
 		if (requestCode == ENABLE_BT_REQUEST_ID) {
 			if(resultCode == Activity.RESULT_CANCELED) {
-				this._scanButton.setEnabled(false);
+				//this._scanButton.setEnabled(false);
 				return;
 			}
 		}
@@ -99,26 +107,13 @@ public class ManagerActivity extends Activity implements TIOManagerCallback {
 	//******************************************************************************
 	// UI event handlers 
 	//******************************************************************************
-	
-	public void onScanButtonPressed(View sender) {
-		STTrace.method("onScanButtonPressed");
 
-		this.startTimedScan();
-	}
 
-	public void onClearAllButtonPressed(View sender) {
-		STTrace.method("onClearAllButtonPressed");
-
-		TIOManager.sharedInstance().removeAllPeripherals();
-		this.updatePeripheralsListView();
-		this.updateClearAllButton();
-	}
-	
 	private void onRemoveButtonPressed(TIOPeripheral peripheral) {
 		STTrace.method("onRemoveButtonPressed", peripheral.toString());
 
 		TIOManager.sharedInstance().removePeripheral(peripheral);
-		this.updatePeripheralsListView();		
+		this.updatePeripheralsListView();
 		this.updateClearAllButton();
 	}
 	
@@ -126,7 +121,11 @@ public class ManagerActivity extends Activity implements TIOManagerCallback {
 		STTrace.method("onPeripheralCellPressed", peripheral.toString());
 		Intent intent;
 
-		switch (opt){
+		intent = new Intent(ManagerActivity.this, PeripheralActivity.class);
+		intent.putExtra(TIOV2Sample.PERIPHERAL_ID_NAME, peripheral.getAddress());
+		ManagerActivity.this.startActivity(intent);
+
+		/*switch (opt){
 			case 0:
 				intent = new Intent(ManagerActivity.this, PeripheralActivity.class);
 				intent.putExtra(TIOV2Sample.PERIPHERAL_ID_NAME, peripheral.getAddress());
@@ -138,10 +137,14 @@ public class ManagerActivity extends Activity implements TIOManagerCallback {
 				intent.putExtra(TIOV2Sample.PERIPHERAL_ID_NAME, peripheral.getAddress());
 				ManagerActivity.this.startActivity(intent);
 				break;
-		}
+		}*/
 
 	}
 
+	private void updateUIState() {
+		STTrace.method("updateUIState");
+
+	}
 	
 	//******************************************************************************
 	// TIOManagerCallback implementation 
@@ -173,8 +176,9 @@ public class ManagerActivity extends Activity implements TIOManagerCallback {
 	private void connectViews() {
 		STTrace.method("connectViews");
 		
-		this._scanButton = (Button) this.findViewById(R.id.scanButton);
-		this._clearAllButton = (Button) this.findViewById(R.id.clearAllButton);
+		//this._scanButton = (Button) this.findViewById(R.id.scanButton);
+		//this._clearAllButton = (Button) this.findViewById(R.id.clearAllButton);
+		this._loading = (TextView)this.findViewById(R.id.loading);
 		this._scanIndicator = (ProgressBar) this.findViewById(R.id.scanIndicator);
 		this._peripheralsListView = (ListView) this.findViewById(R.id.peripheralsListView);
 		this._radioGroup = (RadioGroup)this.findViewById(R.id.radioButtons);
@@ -215,18 +219,18 @@ public class ManagerActivity extends Activity implements TIOManagerCallback {
 		removeButton.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View view) {
-				ManagerActivity.this.onRemoveButtonPressed(peripheral);		
+				ManagerActivity.this.onRemoveButtonPressed(peripheral);
 			}
 		});
-		
+
 		peripheralCell.setOnTouchListener(this.createPeripheralCellGestureDetector(peripheral, removeButton));
 
 		return peripheralCell;
 	}
-	
+
 	private STSwipeTapDetector createPeripheralCellGestureDetector(final TIOPeripheral peripheral, final Button removeButton) {
 		STSwipeTapDetector detector = new STSwipeTapDetector(this) {
-			
+
 			private boolean _removeMode;
 			@Override
 			public boolean onLeftSwipe() {
@@ -248,9 +252,9 @@ public class ManagerActivity extends Activity implements TIOManagerCallback {
 	                }
 					@Override
 					public void onAnimationRepeat(Animation animation) { }
-	            });						
+	            });
 				removeButton.startAnimation(animation);
-				
+
 				return true; // handled
 			}
 			@Override
@@ -271,10 +275,10 @@ public class ManagerActivity extends Activity implements TIOManagerCallback {
 	                }
 					@Override
 					public void onAnimationRepeat(Animation animation) { }
-	            });						
+	            });
 				removeButton.startAnimation(animation);
 				this._removeMode = false;
-				
+
 				return true;
 			}
 	        @Override
@@ -283,20 +287,21 @@ public class ManagerActivity extends Activity implements TIOManagerCallback {
 	        		return true; // handled
 
         		ManagerActivity.this.onPeripheralCellPressed(peripheral);
-				
+
 				return true; // handled
 	        }
 		};
-		
+
 		return detector;
 	}
 
 	private void startTimedScan() {
 		STTrace.method("startTimedScan");
 		
-		this._scanButton.setEnabled(false);
-		this._clearAllButton.setEnabled(false);
+		//this._scanButton.setEnabled(false);
+		//this._clearAllButton.setEnabled(false);
 		this._scanIndicator.setVisibility(View.VISIBLE);
+		this._loading.setVisibility(View.VISIBLE);
 		
 		this._scanHandler.postDelayed(new Runnable() {
             		@Override
@@ -304,8 +309,9 @@ public class ManagerActivity extends Activity implements TIOManagerCallback {
             	    	TIOManager.sharedInstance().stopScan();
             			
             			ManagerActivity.this._scanIndicator.setVisibility(View.INVISIBLE);
-            			ManagerActivity.this._scanButton.setEnabled(true);
-            			ManagerActivity.this.updateClearAllButton();
+						ManagerActivity.this._loading.setText(R.string.available_dev);
+            			//ManagerActivity.this._scanButton.setEnabled(true);
+            			//ManagerActivity.this.updateClearAllButton();
             		}
             	}, ManagerActivity.SCAN_INTERVAL);
 
@@ -316,7 +322,7 @@ public class ManagerActivity extends Activity implements TIOManagerCallback {
 		// update adapter with currently known peripherals
 		this._peripheralsAdapter.notifyDataSetChanged();
 	}
-	
+
 	private void updateClearAllButton() {
 		this._clearAllButton.setEnabled(TIOManager.sharedInstance().getPeripherals().length > 0);
 	}

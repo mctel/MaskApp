@@ -40,7 +40,7 @@
 	    android:textColor="#FFFFFFFF"
         android:text="@string/remove_button_title"
 	    />
-		
+
 		<!-- 
 		android:visibility="invisible" 
 		-->

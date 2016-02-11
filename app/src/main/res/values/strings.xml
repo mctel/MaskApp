@@ -7,6 +7,9 @@
     <string name="scan_button_title">Scan</string>
     <string name="clear_all_button_title">Clear</string>
     <string name="remove_button_title">Remove</string>
+    <string name="loading">Searching devices...</string>
+    <string name="available_dev">Available devices:</string>
+    <string name="connecting">Connecting...</string>
     
     <string name="main_title_placeholder">BM+SR 0123  00:80:25:11:22:33</string>
     <string name="sub_title_placeholder">BM+SR 0123 [BondableFunctional]</string>
