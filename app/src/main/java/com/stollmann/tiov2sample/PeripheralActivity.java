@@ -477,7 +477,6 @@ public class PeripheralActivity extends DemoBase implements TIOPeripheralCallbac
 					chartFlag=true;
 					mChart.getAxisLeft().setAxisMaxValue(10f);
 					mChart.getAxisLeft().setAxisMinValue(0f);
-					mChart.invalidate();
 					if (chartFlag2){
 						mChart.getAxisRight().setEnabled(true);
 						mChart.setData(dataVolumeSet);
@@ -487,6 +486,7 @@ public class PeripheralActivity extends DemoBase implements TIOPeripheralCallbac
 						mChart.setData(dataVolume);
 					}
 				}
+				mChart.invalidate();
 				time = measurement1.getLastValue().getTime();
 				_timeTextView.setText("Time: " + String.format("%1$,.2f", time) + " s");
 			}
@@ -500,7 +500,6 @@ public class PeripheralActivity extends DemoBase implements TIOPeripheralCallbac
 					chartFlag = false;
 					mChart.getAxisLeft().setAxisMaxValue(1800f);
 					mChart.getAxisLeft().setAxisMinValue(-1800f);
-					mChart.invalidate();
 					if (chartFlag2){
 						mChart.getAxisRight().setEnabled(true);
 						mChart.setData(dataFlowSet);
@@ -510,6 +509,7 @@ public class PeripheralActivity extends DemoBase implements TIOPeripheralCallbac
 						mChart.setData(dataFlow);
 					}
 				}
+				mChart.invalidate();
 				time = measurement1.getLastValue().getTime();
 				_timeTextView.setText("Time: " + String.format("%1$,.2f", time) + " s");
 			}
@@ -520,11 +520,20 @@ public class PeripheralActivity extends DemoBase implements TIOPeripheralCallbac
 			public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
 				if(isChecked){
 					chartFlag2=true;
-					//mChart.getAxisLeft().setAxisMaxValue(150f);
-					//mChart.getAxisLeft().setAxisMinValue(-150f);
-					//mChart.invalidate();
-					//mChart.setData(dataCO2);
-				} else chartFlag2 = false;
+					mChart.getAxisRight().setAxisMaxValue(150f);
+					mChart.getAxisRight().setAxisMinValue(-150f);
+					mChart.getAxisRight().setEnabled(true);
+					if (chartFlag)mChart.setData(dataVolumeSet);
+					else mChart.setData(dataFlowSet);
+					mChart.moveViewToX(xVals.size() -300);
+				} else{
+					chartFlag2 = false;
+					mChart.getAxisRight().setEnabled(false);
+					if (chartFlag)mChart.setData(dataVolume);
+					else mChart.setData(dataFlow);
+					mChart.moveViewToX(xVals.size() +300);
+				}
+				mChart.invalidate();
 				time = measurement1.getLastValue().getTime();
 				_timeTextView.setText("Time: " + String.format("%1$,.2f", time) + " s");
 			}
@@ -655,10 +664,11 @@ public class PeripheralActivity extends DemoBase implements TIOPeripheralCallbac
 			mChart.getAxisLeft().setAxisMaxValue(10f);
 			mChart.getAxisLeft().setAxisMinValue(0f);
 			if (chartFlag2){
+				mChart.getAxisRight().setAxisMaxValue(150f);
+				mChart.getAxisRight().setAxisMinValue(-150f);
 				mChart.getAxisRight().setEnabled(true);
 				mChart.setData(dataVolumeSet);
-			}
-			else {
+			} else {
 				mChart.getAxisRight().setEnabled(false);
 				mChart.setData(dataVolume);
 			}
@@ -666,6 +676,8 @@ public class PeripheralActivity extends DemoBase implements TIOPeripheralCallbac
 			mChart.getAxisLeft().setAxisMaxValue(1800f);
 			mChart.getAxisLeft().setAxisMinValue(-1800f);
 			if (chartFlag2){
+				mChart.getAxisRight().setAxisMaxValue(150f);
+				mChart.getAxisRight().setAxisMinValue(-150f);
 				mChart.getAxisRight().setEnabled(true);
 				mChart.setData(dataFlowSet);
 			}
