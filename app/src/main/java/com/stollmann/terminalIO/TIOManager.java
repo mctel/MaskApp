@@ -6,6 +6,7 @@ import java.io.FileOutputStream;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
+import java.util.UUID;
 
 import com.stollmann.shared.AndroidBLEScanRecord;
 import com.stollmann.shared.STTrace;
@@ -132,8 +133,8 @@ public class TIOManager {
 		
 		// We would like to filter scan results for the TerminalIO service UUID, but Android 4.4 does not support the filtering of scan records containing 128-bit UUIDs;
 		// so we have to consume all scan results and implement our own filtering mechanism.
-//		this._bluetoothAdapter.startLeScan(new UUID[] { TIO.SERVICE_UUID }, this._scanListener);
-		this._bluetoothAdapter.startLeScan(this._scanListener);
+		this._bluetoothAdapter.startLeScan(new UUID[] { TIO.SERVICE_UUID }, this._scanListener);
+		//this._bluetoothAdapter.startLeScan(this._scanListener);
 	}
 	
 	/**
