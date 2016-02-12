@@ -473,14 +473,19 @@ public class PeripheralActivity extends DemoBase implements TIOPeripheralCallbac
 			@Override
 			public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
 				if(isChecked){
-					if (chartFlag2) mChart.getAxisRight().setEnabled(true);
-					else mChart.getAxisRight().setEnabled(false);
 					_flowBtn.setChecked(false);
 					chartFlag=true;
 					mChart.getAxisLeft().setAxisMaxValue(10f);
 					mChart.getAxisLeft().setAxisMinValue(0f);
 					mChart.invalidate();
-					mChart.setData(dataVolumeSet);
+					if (chartFlag2){
+						mChart.getAxisRight().setEnabled(true);
+						mChart.setData(dataVolumeSet);
+					}
+					else {
+						mChart.getAxisRight().setEnabled(false);
+						mChart.setData(dataVolume);
+					}
 				}
 				time = measurement1.getLastValue().getTime();
 				_timeTextView.setText("Time: " + String.format("%1$,.2f", time) + " s");
@@ -491,14 +496,19 @@ public class PeripheralActivity extends DemoBase implements TIOPeripheralCallbac
 			@Override
 			public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
 				if(isChecked){
-					if (chartFlag2) mChart.getAxisRight().setEnabled(true);
-					else mChart.getAxisRight().setEnabled(false);
 					_volumeBtn.setChecked(false);
 					chartFlag = false;
-					mChart.getAxisLeft().setAxisMaxValue(1500f);
-					mChart.getAxisLeft().setAxisMinValue(-1500f);
+					mChart.getAxisLeft().setAxisMaxValue(1800f);
+					mChart.getAxisLeft().setAxisMinValue(-1800f);
 					mChart.invalidate();
-					mChart.setData(dataFlowSet);
+					if (chartFlag2){
+						mChart.getAxisRight().setEnabled(true);
+						mChart.setData(dataFlowSet);
+					}
+					else {
+						mChart.getAxisRight().setEnabled(false);
+						mChart.setData(dataFlow);
+					}
 				}
 				time = measurement1.getLastValue().getTime();
 				_timeTextView.setText("Time: " + String.format("%1$,.2f", time) + " s");
@@ -642,25 +652,35 @@ public class PeripheralActivity extends DemoBase implements TIOPeripheralCallbac
 
 		// set data
 		if (chartFlag){
-			if (chartFlag2) mChart.getAxisRight().setEnabled(true);
-			else mChart.getAxisRight().setEnabled(false);
 			mChart.getAxisLeft().setAxisMaxValue(10f);
 			mChart.getAxisLeft().setAxisMinValue(0f);
-			mChart.setData(dataVolumeSet);
+			if (chartFlag2){
+				mChart.getAxisRight().setEnabled(true);
+				mChart.setData(dataVolumeSet);
+			}
+			else {
+				mChart.getAxisRight().setEnabled(false);
+				mChart.setData(dataVolume);
+			}
 		}else if(!chartFlag){
-			if (chartFlag2) mChart.getAxisRight().setEnabled(true);
-			else mChart.getAxisRight().setEnabled(false);
-			mChart.getAxisLeft().setAxisMaxValue(1500f);
-			mChart.getAxisLeft().setAxisMinValue(-1500f);
-			mChart.setData(dataFlowSet);
+			mChart.getAxisLeft().setAxisMaxValue(1800f);
+			mChart.getAxisLeft().setAxisMinValue(-1800f);
+			if (chartFlag2){
+				mChart.getAxisRight().setEnabled(true);
+				mChart.setData(dataFlowSet);
+			}
+			else {
+				mChart.getAxisRight().setEnabled(false);
+				mChart.setData(dataFlow);
+			}
 		}
 
 
 		/*Let the view just show the first 60 values, then you have to scroll if you want to watch more
 		We cannot do it at the beginning because every time the chart receive new values will move the view
 		to show them, so we have to correct it here*/
-		mChart.setVisibleXRangeMaximum(1000);
-		mChart.moveViewToX(xVals.size() -1100);
+		mChart.setVisibleXRangeMaximum(300);
+		mChart.moveViewToX(xVals.size() -300);
 
 		_timeTextView.setText("Time: " + String.format("%1$,.2f", time) + " s");
 	}
@@ -701,8 +721,8 @@ public class PeripheralActivity extends DemoBase implements TIOPeripheralCallbac
 		dataVolumeSet = new LineData(xVals, dataSet1);
 		dataFlowSet = new LineData(xVals, dataSet2);
 		dataCO2 = new LineData(xVals, dataSet1);
-		//dataVolume = new LineData(xVals, dataSet1.set(0,set1));
-		//dataFlow = new LineData(xVals, dataSet1.set(1,set2));
+		dataVolume = new LineData(xVals, dataSet1.set(0,set1));
+		dataFlow = new LineData(xVals, dataSet2.set(0,set2));
 		//dataCO2 = new LineData(xVals, dataSet1.set(2,set3));
 
 	}
