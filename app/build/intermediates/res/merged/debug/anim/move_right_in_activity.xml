@@ -4,4 +4,4 @@
       android:duration="300"
       android:fromXDelta="100%p" 
       android:toXDelta="0%p">
-</translate><!-- From: file:/Users/marcoscandelaboti/Desktop/TerminalIO_V2_Android_SampleAndDocumentation_r03/TIOV2Sample/app/src/main/res/anim/move_right_in_activity.xml -->
+</translate><!-- From: file:/Users/marcoscandelaboti/Desktop/TerminalIO_V2_Android_SampleAndDocumentation_r03/MaskApp/app/src/main/res/anim/move_right_in_activity.xml -->
