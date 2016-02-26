@@ -17,7 +17,7 @@
     <string name="CO2">CO2</string>
     <string name="action_settings">Settings</string>
     <string name="app_name">Stollmann</string>
-    <string name="app_title">maskapp</string>
+    <string name="app_title">joules</string>
     <string name="available_dev">Available devices:</string>
     <string name="calories_btn">Calorie Consumption</string>
     <string name="charts_btn">Volume, flow and CO2</string>

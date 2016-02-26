@@ -34,9 +34,10 @@ public class SpiroMeasurement{
         double currentTime = lastDataPoint.getTime() + SampleTime;
         double Volume = lastDataPoint.getVolume()+deltaVolume;
 
-        //Log.i("TTflow", "       "+String.valueOf(flow));
-        //Log.i("TTcurrentTime"," "+ String.valueOf(currentTime));
-        //Log.i("TTVolume", String.valueOf(Volume));
+        Log.i("TTflow", "       "+String.valueOf(flow));
+        Log.i("TTcurrentTime"," "+ String.valueOf(currentTime));
+        Log.i("TTdeltaVolume", String.valueOf(deltaVolume));
+        Log.i("TTVolume", String.valueOf(Volume));
 
         SpiroDataPointCore currentDataPoint = new SpiroDataPointCore(flow,currentTime,Volume);
 
@@ -63,13 +64,12 @@ public class SpiroMeasurement{
         }*/
 
         dataPoints.add(currentDataPoint);
-        Log.i("TTVolume", String.valueOf(Volume));
     }
 
 
 
     public void Append (short flow){
-        double realFlow = (double)flow * 60.0 / 10.0; //60 is to make it Liters/sec instead of l/min, and the 10 is bcs
+        double realFlow = (double)flow / (10.0); //60 is to make it Liters/sec instead of l/min, and the 10 is bcs
         Append(realFlow);                             // we multiplied before sending the data by 10 to make every value integer
     }
 

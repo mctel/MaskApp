@@ -133,7 +133,7 @@ public class PeripheralActivity extends DemoBase implements TIOPeripheralCallbac
 		this.connectViews();
 		this.connectPeripheral();
 		this.updateUIState();
-		this.displayVersionNumber();
+		//this.displayVersionNumber();
 		this.onConnectButtonPressed();
 
 		//_____________________CHART__________________________________________
@@ -166,6 +166,8 @@ public class PeripheralActivity extends DemoBase implements TIOPeripheralCallbac
 		YAxis rightAxis = mChart.getAxisRight();
 		rightAxis.setValueFormatter(valueFormatterY);
 		rightAxis.removeAllLimitLines(); // reset all limit lines to avoid overlapping lines
+		rightAxis.setAxisMaxValue(50f);
+		rightAxis.setAxisMinValue(-50f);
 		rightAxis.setStartAtZero(false);
 
 		Legend legend = mChart.getLegend();
@@ -195,9 +197,8 @@ public class PeripheralActivity extends DemoBase implements TIOPeripheralCallbac
 		mChart.invalidate();
 		//_______________________________________________________________
 
-
+		//______________________________CO2 BAR_______________________________
 		_pbCO2.setMax(1100);
-
 
 	}
 
@@ -328,6 +329,10 @@ public class PeripheralActivity extends DemoBase implements TIOPeripheralCallbac
 		startActivity(intent);
 	}
 
+	//******************************************************************************
+	// Getting data
+	//******************************************************************************
+
 	public static SpiroMeasurement measurement1 = new SpiroMeasurement();
 	SpiroMeasurement measurement2= new SpiroMeasurement();
 
@@ -394,6 +399,11 @@ public class PeripheralActivity extends DemoBase implements TIOPeripheralCallbac
 			STTrace.exception(ex);
 		}
 	}
+
+
+	//******************************************************************************
+	// TIOPeripheralCallback implementation
+	//******************************************************************************
 
 	@Override
 	public void tioPeripheralDidWriteNumberOfUARTBytes(TIOPeripheral peripheral, int bytesWritten) {
@@ -475,8 +485,8 @@ public class PeripheralActivity extends DemoBase implements TIOPeripheralCallbac
 				if(isChecked){
 					_flowBtn.setChecked(false);
 					chartFlag=true;
-					mChart.getAxisLeft().setAxisMaxValue(10f);
-					mChart.getAxisLeft().setAxisMinValue(0f);
+					mChart.getAxisLeft().setAxisMaxValue(5f);
+					mChart.getAxisLeft().setAxisMinValue(-2f);
 					if (chartFlag2){
 						mChart.getAxisRight().setEnabled(true);
 						mChart.setData(dataVolumeSet);
@@ -498,8 +508,8 @@ public class PeripheralActivity extends DemoBase implements TIOPeripheralCallbac
 				if(isChecked){
 					_volumeBtn.setChecked(false);
 					chartFlag = false;
-					mChart.getAxisLeft().setAxisMaxValue(1800f);
-					mChart.getAxisLeft().setAxisMinValue(-1800f);
+					mChart.getAxisLeft().setAxisMaxValue(500f);
+					mChart.getAxisLeft().setAxisMinValue(-500f);
 					if (chartFlag2){
 						mChart.getAxisRight().setEnabled(true);
 						mChart.setData(dataFlowSet);
@@ -520,18 +530,14 @@ public class PeripheralActivity extends DemoBase implements TIOPeripheralCallbac
 			public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
 				if(isChecked){
 					chartFlag2=true;
-					mChart.getAxisRight().setAxisMaxValue(150f);
-					mChart.getAxisRight().setAxisMinValue(-150f);
 					mChart.getAxisRight().setEnabled(true);
 					if (chartFlag)mChart.setData(dataVolumeSet);
 					else mChart.setData(dataFlowSet);
-					mChart.moveViewToX(xVals.size() -300);
 				} else{
 					chartFlag2 = false;
 					mChart.getAxisRight().setEnabled(false);
 					if (chartFlag)mChart.setData(dataVolume);
 					else mChart.setData(dataFlow);
-					mChart.moveViewToX(xVals.size() +300);
 				}
 				mChart.invalidate();
 				time = measurement1.getLastValue().getTime();
@@ -614,7 +620,9 @@ public class PeripheralActivity extends DemoBase implements TIOPeripheralCallbac
 		this.setTitle(this.getTitle() + " " + version);
 	}
 
-	//---------------CHART METHODS--------------------------------------------------------------
+	//******************************************************************************
+	// Chart implementation
+	//******************************************************************************
 	@Override
 	public void onWindowFocusChanged(boolean hasFocus) {
 		super.onWindowFocusChanged(hasFocus);
@@ -661,31 +669,27 @@ public class PeripheralActivity extends DemoBase implements TIOPeripheralCallbac
 
 		// set data
 		if (chartFlag){
-			mChart.getAxisLeft().setAxisMaxValue(10f);
-			mChart.getAxisLeft().setAxisMinValue(0f);
+			mChart.getAxisLeft().setAxisMaxValue(5f);
+			mChart.getAxisLeft().setAxisMinValue(-2f);
 			if (chartFlag2){
-				mChart.getAxisRight().setAxisMaxValue(150f);
-				mChart.getAxisRight().setAxisMinValue(-150f);
 				mChart.getAxisRight().setEnabled(true);
 				mChart.setData(dataVolumeSet);
 			} else {
 				mChart.getAxisRight().setEnabled(false);
 				mChart.setData(dataVolume);
 			}
-		}else if(!chartFlag){
-			mChart.getAxisLeft().setAxisMaxValue(1800f);
-			mChart.getAxisLeft().setAxisMinValue(-1800f);
+		}else {
+			mChart.getAxisLeft().setAxisMaxValue(500f);
+			mChart.getAxisLeft().setAxisMinValue(-500f);
 			if (chartFlag2){
-				mChart.getAxisRight().setAxisMaxValue(150f);
-				mChart.getAxisRight().setAxisMinValue(-150f);
 				mChart.getAxisRight().setEnabled(true);
 				mChart.setData(dataFlowSet);
-			}
-			else {
+			} else {
 				mChart.getAxisRight().setEnabled(false);
 				mChart.setData(dataFlow);
 			}
 		}
+		Log.i("VVVolume", String.valueOf(measurement2.getLastValue().getFlow()));
 
 
 		/*Let the view just show the first 60 values, then you have to scroll if you want to watch more
@@ -716,6 +720,7 @@ public class PeripheralActivity extends DemoBase implements TIOPeripheralCallbac
 		set2.setColor(Color.RED);
 		set2.setValueTextSize(0f);
 
+		set3.setAxisDependency(YAxis.AxisDependency.RIGHT);
 		set3.disableDashedLine();
 		set3.setDrawCircles(false);
 		set3.setLineWidth(2f);
@@ -723,18 +728,17 @@ public class PeripheralActivity extends DemoBase implements TIOPeripheralCallbac
 		set3.setValueTextSize(0f);
 
 		ArrayList<LineDataSet> dataSet1 =  new ArrayList<LineDataSet>();
-		dataSet1.add(set1);
 		dataSet1.add(set3);
+		dataSet1.add(set1);
 
 		ArrayList<LineDataSet> dataSet2 =  new ArrayList<LineDataSet>();
-		dataSet2.add(set2);
 		dataSet2.add(set3);
+		dataSet2.add(set2);
 
 		dataVolumeSet = new LineData(xVals, dataSet1);
 		dataFlowSet = new LineData(xVals, dataSet2);
-		dataCO2 = new LineData(xVals, dataSet1);
-		dataVolume = new LineData(xVals, dataSet1.set(0,set1));
-		dataFlow = new LineData(xVals, dataSet2.set(0,set2));
+		dataVolume = new LineData(xVals, dataSet1.set(1,set1));
+		dataFlow = new LineData(xVals, dataSet2.set(1,set2));
 		//dataCO2 = new LineData(xVals, dataSet1.set(2,set3));
 
 	}

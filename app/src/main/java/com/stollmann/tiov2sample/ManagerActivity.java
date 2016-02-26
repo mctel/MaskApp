@@ -6,6 +6,8 @@ import com.stollmann.terminalIO.TIOManager;
 import com.stollmann.terminalIO.TIOManagerCallback;
 import com.stollmann.terminalIO.TIOPeripheral;
 
+import android.app.ProgressDialog;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
 import android.app.Activity;
@@ -43,6 +45,9 @@ public class ManagerActivity extends Activity implements TIOManagerCallback {
 	private Handler _scanHandler = new Handler();
 	private RadioGroup _radioGroup;
 
+	public static String address;
+	private ProgressDialog pd = null;
+
 	private static int opt=0;
 	
 	
@@ -76,10 +81,9 @@ public class ManagerActivity extends Activity implements TIOManagerCallback {
 		//this.updateClearAllButton();
 
         // display version number
-		this.displayVersionNumber();
+		//this.displayVersionNumber();
 
 		STTrace.method("onScanButtonPressed");
-
 		this.startTimedScan();
 	}
 
@@ -121,10 +125,17 @@ public class ManagerActivity extends Activity implements TIOManagerCallback {
 		STTrace.method("onPeripheralCellPressed", peripheral.toString());
 		Intent intent;
 
-		intent = new Intent(ManagerActivity.this, PeripheralActivity.class);
+		this.pd = ProgressDialog.show(this, "MaskApp",
+				"Connecting...Please wait...", true, false);
+		// Start a new thread that will download all the data
+		new IAmABackgroundTask().execute();
+
+		address = peripheral.getAddress();
+
+	/*	intent = new Intent(ManagerActivity.this, PeripheralActivity.class);
 		intent.putExtra(TIOV2Sample.PERIPHERAL_ID_NAME, peripheral.getAddress());
 		ManagerActivity.this.startActivity(intent);
-		overridePendingTransition(R.anim.zoom_forward_in, R.anim.zoom_forward);
+		overridePendingTransition(R.anim.zoom_forward_in, R.anim.zoom_forward);*/
 
 		/*switch (opt){
 			case 0:
@@ -346,5 +357,38 @@ public class ManagerActivity extends Activity implements TIOManagerCallback {
 
 	public void calorieClick (View v){
 		opt=1;
+	}
+
+	class IAmABackgroundTask extends
+			AsyncTask<String, Integer, Boolean> {
+		@Override
+		protected void onPreExecute() {
+			// showDialog(AUTHORIZING_DIALOG);
+		}
+
+		@Override
+		protected void onPostExecute(Boolean result) {
+
+
+
+			if (ManagerActivity.this.pd != null) {
+				ManagerActivity.this.pd.dismiss();
+			}
+
+		}
+
+		@Override
+		protected Boolean doInBackground(String... params) {
+
+
+			Intent intent = new Intent(ManagerActivity.this, PeripheralActivity.class);
+			intent.putExtra(TIOV2Sample.PERIPHERAL_ID_NAME, address);
+			ManagerActivity.this.startActivity(intent);
+			overridePendingTransition(R.anim.zoom_forward_in, R.anim.zoom_forward);
+
+			return true;
+
+		}
+
 	}
 }
